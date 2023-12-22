@@ -1,0 +1,30 @@
+name: Black
+'on':
+  workflow_dispatch:
+    inputs:
+      extra_resolve_options:
+        description: Extra Resolve Options
+        required: false
+  schedule:
+  - cron: 0 1 * * *
+  push:
+    branches:
+    - master
+  pull_request:
+jobs:
+  black:
+    name: Black Format
+    runs-on:
+    - self-hosted
+    - docker
+    container:
+      image: kiwicom/black
+      options: --user 0:0
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+    - name: Run Black Check
+      run: black . --check
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true

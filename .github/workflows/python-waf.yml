@@ -1,0 +1,43 @@
+name: Waf Python Tests
+'on':
+  workflow_dispatch:
+    inputs:
+      extra_resolve_options:
+        description: Extra Resolve Options
+        required: false
+  schedule:
+  - cron: 0 1 * * *
+  push:
+    branches:
+    - master
+  pull_request:
+jobs:
+  waf:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - Windows
+        - Linux
+    runs-on:
+    - self-hosted
+    - docker
+    - linux
+    - builder
+    name: ${{ matrix.os }} Waf
+    container:
+      image: ghcr.io/steinwurf/twine:latest
+    env:
+      python: python3
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Configure
+      run: ${{ env.python }} waf configure
+    - name: Build
+      run: ${{ env.python }} waf
+    - name: Test
+      run: ${{ env.python }} waf --run_tests
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true

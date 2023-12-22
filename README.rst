@@ -3,7 +3,7 @@ BugHawk
 =======
 
 .. image:: ./icon.png
-   :height: 200px
+   :height: 400px
    :align: center
 
 

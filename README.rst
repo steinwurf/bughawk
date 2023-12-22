@@ -2,11 +2,19 @@
 BugHawk
 =======
 
-|PyPi| |Waf Python Tests| |Black| |Flake8|
+|BugHawk|
 
 
 .. |PyPi| image:: https://badge.fury.io/py/bughawk.svg
     :target: https://badge.fury.io/py/bughawk
+
+
+
+
+|PyPi| |Waf Python Tests| |Black| |Flake8|
+
+
+.. |BugHawk| image:: https://raw.githubusercontent.com/steinwurf/bughawk/master/logo.png
 
 .. |Waf Python Tests| image:: https://github.com/steinwurf/bughawk/actions/workflows/python-waf.yml/badge.svg
    :target: https://github.com/steinwurf/bughawk/actions/workflows/python-waf.yml
